@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
 
+// CONFIG
+import { JwtConfigModule } from './config/jwt/config.module'
+
 @Module({
-  imports: [],
+  imports: [JwtConfigModule],
   controllers: [],
   providers: [],
 })
