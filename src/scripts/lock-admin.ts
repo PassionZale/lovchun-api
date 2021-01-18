@@ -16,22 +16,15 @@ type ResetAnswer = { admin_reset: boolean };
 type AdminAnswers = { admin_username: string; admin_password: string };
 
 (async () => {
-  let reset = true;
-  let isLockFileExist = false;
+  const resetAnswer: ResetAnswer = await prompt({
+    type: 'confirm',
+    name: 'admin_reset',
+    message: '确定创建管理员吗？',
+  });
 
-  if (fs.existsSync(LOCK)) {
-    isLockFileExist = true;
+  const { admin_reset } = resetAnswer;
 
-    const resetAnswer: ResetAnswer = await prompt({
-      type: 'confirm',
-      name: 'admin_reset',
-      message: '管理员已存在，是否重置？',
-    });
-
-    reset = resetAnswer.admin_reset;
-  }
-
-  if (reset === true) {
+  if (admin_reset === true) {
     const adminAnswers: AdminAnswers = await prompt([
       {
         required: true,
@@ -61,14 +54,12 @@ type AdminAnswers = { admin_username: string; admin_password: string };
 
     const { admin_username, admin_password } = adminAnswers;
 
-    if (isLockFileExist) {
-      logger.log(`Removing ${LOCK} file`);
-      rimraf.sync(LOCK);
-    }
+    logger.log(`Removing ${LOCK} file`);
+    rimraf.sync(LOCK);
 
     logger.log(`Creating ${LOCK} file`);
 
-    const locked_at = moment().format(TIME_FORMAT)
+    const locked_at = moment().format(TIME_FORMAT);
 
     const admin = {
       username: admin_username,
@@ -79,6 +70,8 @@ type AdminAnswers = { admin_username: string; admin_password: string };
 
     fs.writeFileSync(LOCK, JSON.stringify(admin, null, 2));
 
-    logger.log(`Administrator ${admin_username} has been successful locked at ${locked_at}`);
+    logger.log(
+      `Administrator ${admin_username} has been successful locked at ${locked_at}`,
+    );
   }
 })();
