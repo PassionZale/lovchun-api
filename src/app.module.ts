@@ -6,8 +6,11 @@ import { TypeormConfigModule } from './config/typeorm/config.module';
 
 // DATABASE
 import { DatabaseModule } from './database/database.module';
+
+// MODULE
+import { AuthModule } from './module/auth/auth.module';
 @Module({
-  imports: [JwtConfigModule, TypeormConfigModule, DatabaseModule],
+  imports: [JwtConfigModule, TypeormConfigModule, DatabaseModule, AuthModule],
   controllers: [],
   providers: [],
 })
