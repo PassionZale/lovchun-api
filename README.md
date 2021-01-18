@@ -7,7 +7,7 @@ Typescript Api Server for [LOVCHUN.COM](https://www.lovchun.com)
 ## 安装
 
 ```bash
-$ npm install
+$ npm ci
 ```
 
 ## 运行
@@ -21,6 +21,16 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+```
+
+## 初始化
+
+```bash
+# 初始化管理员账户
+$ npm run lock-admin
+
+# 数据库迁移
+$ npm run typeorm:migrate
 ```
 
 ## 依赖说明
