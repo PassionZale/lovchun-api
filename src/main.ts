@@ -5,7 +5,7 @@ import * as moment from 'moment-timezone';
 import { AppModule } from './app.module';
 import { TypeormConfigService } from './config/typeorm/config.service';
 import { updateOrmConfigFileSync } from './common/helper/typeorm.helper';
-import { updateLockFileSync } from './common/helper/lock.helper';
+import { initLockFile } from './common/helper/lock.helper';
 import { AnyExceptionFilter } from './filter/any-exception.filter';
 import { HttpExceptionFilter } from './filter/http-exception.filter';
 import { TransformInterceptor } from './interceptor/transform.interceptor';
@@ -47,7 +47,7 @@ async function bootstrap() {
 
   // 在使用 Docker 运行容器时, ./lock.json 是一个挂载文件
   // 因此必须确保 lock.json 存在
-  updateLockFileSync();
+  initLockFile();
 
   await app.listen(3000);
 }

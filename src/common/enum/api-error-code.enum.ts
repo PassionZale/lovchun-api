@@ -11,7 +11,7 @@ export enum ApiErrorCode {
    */
   ACCESS_TOKEN_INVALID = 40001,
   /**
-   * jwt 中的荷载无法查询到对应用户
+   * jwt 中的荷载与 lock.json 中的 username login_at 无法完全匹配
    */
   JWT_PAYLOAD_INVALID = 40002,
   /**

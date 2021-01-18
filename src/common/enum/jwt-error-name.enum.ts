@@ -2,9 +2,11 @@
  * jsonwebtoken verfiyErrors
  */
 export enum JwtErrorName {
-  "JsonWebTokenError" = "令牌无效",
+  'JsonWebTokenError' = '凭证不合法',
 
-  "NotBeforeError" = "令牌不在使用时间",
-  
-  "TokenExpiredError" = "令牌已过期",
+  'NotBeforeError' = '凭证不在使用时间',
+
+  'TokenExpiredError' = '凭证已过期',
+
+  'SyntaxError' = '凭证无法解析',
 }
