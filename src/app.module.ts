@@ -9,8 +9,19 @@ import { DatabaseModule } from './database/database.module';
 
 // MODULE
 import { AuthModule } from './module/auth/auth.module';
+import { TagModule } from './module/tag/tag.module';
+import { PostModule } from './module/post/post.module';
 @Module({
-  imports: [JwtConfigModule, TypeormConfigModule, DatabaseModule, AuthModule],
+  imports: [
+    JwtConfigModule,
+    TypeormConfigModule,
+
+    DatabaseModule,
+
+    AuthModule,
+    TagModule,
+    PostModule,
+  ],
   controllers: [],
   providers: [],
 })
