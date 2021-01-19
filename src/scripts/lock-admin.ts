@@ -19,6 +19,7 @@ type AdminAnswers = { admin_username: string; admin_password: string };
   const resetAnswer: ResetAnswer = await prompt({
     type: 'confirm',
     name: 'admin_reset',
+    initial: true,
     message: '确定创建管理员吗？',
   });
 
@@ -46,6 +47,7 @@ type AdminAnswers = { admin_username: string; admin_password: string };
         validate(value): boolean | string {
           if (!value.trim()) {
             return '密码不能为空';
+
           }
           return true;
         },
