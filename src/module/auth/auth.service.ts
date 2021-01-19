@@ -8,15 +8,15 @@ import {
   getLockFileData,
 } from '@src/common/helper/lock.helper';
 import { verify } from '@src/common/helper/bcryptjs.helper';
-import { IUser } from '@src/common/interface/user.interface';
+import { User } from '@src/common/interface/user.interface';
 import { TIME_FORMAT } from '@src/common/constant/format.constant';
-import { IPayload } from './auth.interface';
+import { Payload } from './auth.interface';
 
 @Injectable()
 export class AuthService {
   constructor(private readonly jwtService: JwtService) {}
 
-  public async validateUserPassword(dto: LoginRequestDto): Promise<IUser> {
+  public async validateUserPassword(dto: LoginRequestDto): Promise<User> {
     try {
       const { username, password } = dto;
 
@@ -56,7 +56,7 @@ export class AuthService {
     };
   }
 
-  public async validatePayload(payload: IPayload): Promise<IUser> {
+  public async validatePayload(payload: Payload): Promise<User> {
     const { username, login_at } = payload;
 
     const user = await getLockFileData();

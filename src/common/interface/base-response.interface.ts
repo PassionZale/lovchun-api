@@ -1,7 +1,7 @@
 /**
  * 基础响应数据接口
  */
-export interface IBaseResponse<T = any> {
+export interface BaseResponse<T = any> {
   /**
    * 业务状态码
    */

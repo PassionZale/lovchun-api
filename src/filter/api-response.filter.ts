@@ -1,12 +1,12 @@
 import { HttpStatus } from '@nestjs/common';
 import * as moment from 'moment-timezone';
 import { DEFAULT_SUCCESS_MESSAGE } from '@src/common/constant/text.constant';
-import { IBaseResponse } from '@src/common/interface/base-response.interface';
+import { BaseResponse } from '@src/common/interface/base-response.interface';
 
 /**
  * 序列化 api 响应数据结构
  */
-export class ApiResponse implements IBaseResponse {
+export class ApiResponse implements BaseResponse {
   code: number;
 
   data: any;
@@ -21,7 +21,7 @@ export class ApiResponse implements IBaseResponse {
     this.message = message || DEFAULT_SUCCESS_MESSAGE;
   }
 
-  getResponse(): IBaseResponse {
+  getResponse(): BaseResponse {
     return {
       code: this.code,
       data: this.data,

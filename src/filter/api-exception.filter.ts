@@ -2,14 +2,14 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import * as moment from 'moment-timezone';
 import { ApiErrorCode } from '@src/common/enum/api-error-code.enum';
 import { DEFAULT_ERROR_MESSAGE } from '@src/common/constant/text.constant';
-import { IBaseResponse } from '@src/common/interface/base-response.interface';
+import { BaseResponse } from '@src/common/interface/base-response.interface';
 
 /**
  * 在业务中抛出异常，例如：
  * throw new ApiException('登录过期')
  * throw new ApiException('登录过期', ApiErrorCode.ACCESS_TOKEN_INVALID)
  */
-export class ApiException extends HttpException implements IBaseResponse {
+export class ApiException extends HttpException implements BaseResponse {
   code: number;
 
   data: any;
@@ -30,7 +30,7 @@ export class ApiException extends HttpException implements IBaseResponse {
     this.code = errorCode || ApiErrorCode.FAIL;
   }
 
-  getResponse(): IBaseResponse {
+  getResponse(): BaseResponse {
     return {
       code: this.code,
       data: this.data,

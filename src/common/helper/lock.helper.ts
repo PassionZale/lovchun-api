@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import { LOCK } from '@src/common/constant/filename.constant';
-import { IUser } from '../interface/user.interface';
+import { User } from '../interface/user.interface';
 
 export function initLockFile(): void {
   if (!fs.existsSync(LOCK)) {
@@ -8,13 +8,13 @@ export function initLockFile(): void {
   }
 }
 
-export async function getLockFileData(): Promise<IUser> {
+export async function getLockFileData(): Promise<User> {
   const data = await fs.promises.readFile(LOCK, 'utf-8');
-  const user = JSON.parse(data) as IUser;
+  const user = JSON.parse(data) as User;
 
   return user;
 }
 
-export async function setLockFileData(data: IUser): Promise<void> {
+export async function setLockFileData(data: User): Promise<void> {
   await fs.promises.writeFile(LOCK, JSON.stringify(data, null, 2));
 }

@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { IBaseResponse } from '@src/common/interface/base-response.interface';
+import { BaseResponse } from '@src/common/interface/base-response.interface';
 import { ApiResponse } from '@src/filter/api-response.filter';
 
 /**
@@ -14,11 +14,11 @@ import { ApiResponse } from '@src/filter/api-response.filter';
  */
 @Injectable()
 export class TransformInterceptor<T>
-  implements NestInterceptor<T, IBaseResponse<T>> {
+  implements NestInterceptor<T, BaseResponse<T>> {
   intercept(
     _context: ExecutionContext,
     next: CallHandler<T>,
-  ): Observable<IBaseResponse<T>> {
+  ): Observable<BaseResponse<T>> {
     return next.handle().pipe(
       map(data => {
         if (data instanceof ApiResponse) {

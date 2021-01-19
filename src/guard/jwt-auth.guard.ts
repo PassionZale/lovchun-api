@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ApiException } from '@src/filter/api-exception.filter';
 import { JwtErrorName } from '@src/common/enum/jwt-error-name.enum';
 import { ApiErrorCode } from '@src/common/enum/api-error-code.enum';
-import { IUser } from '@src/common/interface/user.interface';
+import { User } from '@src/common/interface/user.interface';
 import { DEFAULT_JWT_ERROR_MESSAGE } from '@src/common/constant/text.constant';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     return super.canActivate(context);
   }
 
-  handleRequest(err?: ApiException, user?: IUser, info?: VerifyErrors): any {
+  handleRequest(err?: ApiException, user?: User, info?: VerifyErrors): any {
     // user 由 jwt.strategy.ts 中的 validate() 所返回
     if (user && !err && !info) {
       return user;

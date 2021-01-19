@@ -1,4 +1,4 @@
-export interface IPayload {
+export interface Payload {
   /**
    *  用户名
    */
