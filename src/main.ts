@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationError } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as moment from 'moment-timezone';
 
 import { AppModule } from './app.module';
@@ -48,6 +49,16 @@ async function bootstrap() {
   // 在使用 Docker 运行容器时, ./lock.json 是一个挂载文件
   // 因此必须确保 lock.json 存在
   initLockFile();
+
+  // Swagger Api Docs
+  const options = new DocumentBuilder()
+    .setTitle(`LOVCHUN-API`)
+    .setDescription('Typescript Api Server for LOVCHUN.COM')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('api/document', app, document);
 
   await app.listen(3000);
 }
