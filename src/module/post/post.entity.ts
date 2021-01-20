@@ -24,7 +24,7 @@ export class PostEntity {
   desc: string;
 
   // 别名，唯一索引
-  @Index({ unique: true })
+  @Index('UQ_post_alias', { unique: true })
   @Column('varchar')
   alias: string;
 

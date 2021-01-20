@@ -19,26 +19,32 @@ export class TagService {
   }
 
   public async delete(id: number): Promise<boolean> {
-    const result:DeleteResult = await this.tagRepository.delete(id)
+    const result: DeleteResult = await this.tagRepository.delete(id);
 
-    return !!result.affected
+    return !!result.affected;
   }
 
   public async update(id: number, dto: UpdateTagRequestDto): Promise<boolean> {
-    const result:UpdateResult = await this.tagRepository.update(id, dto)
+    const result: UpdateResult = await this.tagRepository.update(id, dto);
 
-    return !!result.affected
+    return !!result.affected;
   }
 
   public async findOne(id: number): Promise<TagEntity> {
-    const tag = await this.tagRepository.findOne(id)
+    const tag = await this.tagRepository.findOne(id);
 
-    return tag
+    return tag;
   }
 
   public async find(): Promise<TagEntity[]> {
-    const tags = await this.tagRepository.find()
+    const tags = await this.tagRepository.find();
 
-    return tags
+    return tags;
+  }
+
+  public async findByIds(ids: number[]): Promise<TagEntity[]> {
+    const tags = await this.tagRepository.findByIds(ids);
+
+    return tags;
   }
 }
