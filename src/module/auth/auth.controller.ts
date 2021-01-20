@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ApiException } from '@src/filter/api-exception.filter';
 import { JwtAuthGuard } from '@src/guard/jwt-auth.guard';
 import { AuthService } from './auth.service';
@@ -13,6 +13,7 @@ export class AuthController {
 
   @ApiOperation({ summary: '登录' })
   @ApiBody({ type: LoginRequestDto })
+  @ApiResponse({ type: LoginResponseDto })
   @Post('/v1/auth/login')
   public async login(@Body() dto: LoginRequestDto): Promise<LoginResponseDto> {
     const user = await this.authService.validateUserPassword(dto);
