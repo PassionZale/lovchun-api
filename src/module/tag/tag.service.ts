@@ -12,7 +12,7 @@ export class TagService {
     private readonly tagRepository: Repository<TagEntity>,
   ) {}
 
-  public async save(dto: CreateTagRequestDto): Promise<TagEntity> {
+  public async create(dto: CreateTagRequestDto): Promise<TagEntity> {
     const tag = await this.tagRepository.save(dto);
 
     return tag;
