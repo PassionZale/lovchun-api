@@ -60,7 +60,7 @@ export class PostEntity {
   })
   published_at: Date;
 
-  @ManyToMany(() => TagEntity)
+  @ManyToMany(() => TagEntity, tag => tag.posts, { cascade: true })
   @JoinTable()
   tags: TagEntity[];
 }

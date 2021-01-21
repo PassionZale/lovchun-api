@@ -82,8 +82,8 @@ export class TagController {
   public async findOne(@Param('id') id: number): Promise<TagEntity> {
     const tag = await this.tagService.findOne(id);
 
-    if(!tag) {
-      throw new ApiException('标签不存在')
+    if (!tag) {
+      throw new ApiException('标签不存在');
     }
 
     return tag;
