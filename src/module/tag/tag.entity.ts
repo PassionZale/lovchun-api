@@ -11,7 +11,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('tag')
 export class TagEntity {
-  @ApiProperty({description: 'ID'})
+  @ApiProperty({ description: 'ID' })
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -37,6 +37,7 @@ export class TagEntity {
   })
   updated_at: Date;
 
+  @ApiProperty({ type: () => [PostEntity], description: '关联文章' })
   @ManyToMany(
     () => PostEntity,
     post => post.tags,
